@@ -27,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        //test Connection with admin
+        auth()->loginUsingId(1);
 
         return view('post.create');
     }
