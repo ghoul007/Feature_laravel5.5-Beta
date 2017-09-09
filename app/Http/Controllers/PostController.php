@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Rules\MinRule;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,7 +42,12 @@ class PostController extends Controller
     {
 
         $validate = request()->validate([
-            'name' => 'required'
+            'name' => [
+                'required',
+                new MinRule
+            ],
+            'description'=>'required'
+
         ]);
 
         Post::forceCreate(request(['name', 'description']));
