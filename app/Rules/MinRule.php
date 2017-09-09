@@ -11,13 +11,13 @@ class MinRule implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  string $attribute
+     * @param  mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-   return strlen($value)>5 ;
+        return preg_match('/^[a-zA-Z]{6,10}$/', $value) ?: false;
     }
 
     /**
@@ -27,6 +27,10 @@ class MinRule implements Rule
      */
     public function message()
     {
-        return 'name must  be greater than 5';
+        return '(Numbers from 0 - 9,
+                No capital letters, 
+                no special symbols at all, 
+                min of 6 characters, 
+                max of 10 characters)';
     }
 }
