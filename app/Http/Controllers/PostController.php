@@ -16,7 +16,8 @@ class PostController extends Controller
     public function index()
     {
 
-//        var_dump("ddd"); die;
+        $posts = Post::all();
+        return view('post.create',compact('posts'));
 
     }
 
