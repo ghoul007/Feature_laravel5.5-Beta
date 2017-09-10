@@ -13,8 +13,18 @@
 
 Route::get('/', function () {
 
-
+//    flash('Welcome Aboard!');
+//    dd(session()->all());
     return view('welcome');
+});
+
+
+Route::get('/Exception', function () {
+//    1er method
+    throw_if(true, Exception::class, "this is exception example");
+//    2em method
+    throw_if(true, new Exception("this is exception example"));
+
 });
 
 Route::get('/mail', function () {
