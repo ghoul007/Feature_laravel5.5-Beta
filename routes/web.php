@@ -35,3 +35,13 @@ Route::get('/mail', function () {
 
 
 Route::resource('post', 'PostController');
+
+
+//Routing helper
+Route::view('/welcome','welcome',['username'=>'test']);
+
+//Redirect
+Route::redirect('/hello','/welcome');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -17,7 +17,7 @@ class PostController extends Controller
     {
 
         $posts = Post::all();
-        return view('post.create',compact('posts'));
+        return view('post.create', compact('posts'));
 
     }
 
@@ -40,19 +40,26 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
 
-        $validate = request()->validate([
+        $validate = $this->validate($request,[
             'name' => [
                 'required',
                 new MinRule
             ],
-            'description'=>'required'
+            'description' => 'required'
 
         ]);
+        $validate['user_id'] = auth()->user()->id;
 
-        Post::forceCreate(request(['name', 'description']));
+
+        /* First meditho
+           Post::forceCreate(request(['name', 'description']));
+          Post::create(request(['name', 'description']));*/
+
+        // Second Methos
+        Post::create($validate);
         return "success";
 //        return view('post.create');
     }
